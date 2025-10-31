@@ -1,1108 +1,1045 @@
 <!DOCTYPE html>
 <html class="light" lang="es">
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Cartoneria Angel Gabriel - Soluciones de Empaque</title>
     <!-- Favicon / PWA -->
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="img/logo-cartoneria-ag.png"
-    />
+    <link rel="icon" type="image/png" sizes="32x32" href="img/logo-cartoneria-ag.png" />
     <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
     <!-- opcional si generas .ico -->
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="img/logo-cartoneria-ag.png"
-    />
+    <link rel="apple-touch-icon" sizes="180x180" href="img/logo-cartoneria-ag.png" />
     <meta name="theme-color" content="#C68D3D" />
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&amp;display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <style>
-      body {
-        scroll-behavior: smooth;
-      }
+        body {
+            scroll-behavior: smooth;
+        }
     </style>
     <style id="efectos-extra">
-      /* Suavidad global y respeto a reduce motion */
-      :root {
-        --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
-      }
-      @media (prefers-reduced-motion: no-preference) {
-        * {
-          scroll-behavior: smooth;
+        /* Suavidad global y respeto a reduce motion */
+        :root {
+            --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
         }
-      }
 
-      /* Aparición al hacer scroll */
-      .reveal-up {
-        opacity: 0;
-        transform: translateY(16px);
-        transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
-        will-change: transform, opacity;
-      }
-      .reveal-up.is-visible {
-        opacity: 1;
-        transform: none;
-      }
+        @media (prefers-reduced-motion: no-preference) {
+            * {
+                scroll-behavior: smooth;
+            }
+        }
 
-      /* Elevación sutil en hover (tarjetas, imágenes) */
-      .hover-lift {
-        transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease),
-          filter 0.35s var(--ease);
-      }
-      .hover-lift:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
-        filter: saturate(1.03);
-      }
+        /* Aparición al hacer scroll */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+            will-change: transform, opacity;
+        }
 
-      /* Header: fondo y sombra al hacer scroll */
-      header {
-        transition: box-shadow 0.35s var(--ease),
-          background-color 0.35s var(--ease), backdrop-filter 0.35s var(--ease);
-      }
-      header.is-scrolled {
-        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
-      }
+        .reveal-up.is-visible {
+            opacity: 1;
+            transform: none;
+        }
 
-      /* Botones: “press” sutil */
-      .pressable {
-        transition: transform 0.18s ease, box-shadow 0.18s ease;
-        box-shadow: 0 10px 22px rgba(13, 71, 161, 0.25);
-      }
-      .pressable:active {
-        transform: translateY(1px) scale(0.99);
-        box-shadow: 0 6px 14px rgba(13, 71, 161, 0.25);
-      }
+        /* Elevación sutil en hover (tarjetas, imágenes) */
+        .hover-lift {
+            transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease),
+                filter 0.35s var(--ease);
+        }
 
-      /* Productos: ya tienes zoom en img; añadimos elevación al contenedor */
-      #productos .group {
-        border-radius: 0.75rem;
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
-      }
-      #productos .group:hover {
-        box-shadow: 0 16px 34px rgba(0, 0, 0, 0.14);
-      }
+        .hover-lift:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+            filter: saturate(1.03);
+        }
 
-      /* Galería: zoom y elevación sutil */
-      #galeria img {
-        transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
-      }
-      #galeria img:hover {
-        transform: translateY(-4px) scale(1.02);
-        box-shadow: 0 12px 26px rgba(0, 0, 0, 0.12);
-      }
+        /* Header: fondo y sombra al hacer scroll */
+        header {
+            transition: box-shadow 0.35s var(--ease),
+                background-color 0.35s var(--ease), backdrop-filter 0.35s var(--ease);
+        }
 
-      /* Hero: parallax suave */
-      #inicio > div {
-        transition: background-position 0.2s linear;
-        background-attachment: scroll;
-      }
+        header.is-scrolled {
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Botones: “press” sutil */
+        .pressable {
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+            box-shadow: 0 10px 22px rgba(13, 71, 161, 0.25);
+        }
+
+        .pressable:active {
+            transform: translateY(1px) scale(0.99);
+            box-shadow: 0 6px 14px rgba(13, 71, 161, 0.25);
+        }
+
+        /* Productos: ya tienes zoom en img; añadimos elevación al contenedor */
+        #productos .group {
+            border-radius: 0.75rem;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+        }
+
+        #productos .group:hover {
+            box-shadow: 0 16px 34px rgba(0, 0, 0, 0.14);
+        }
+
+        /* Galería: zoom y elevación sutil */
+        #galeria img {
+            transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+        }
+
+        #galeria img:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Hero: parallax suave */
+        #inicio>div {
+            transition: background-position 0.2s linear;
+            background-attachment: scroll;
+        }
     </style>
 
     <style id="ajustes-hero-header">
-      /* Hero más alto (móvil y desktop) */
-      #inicio > div {
-        min-height: 78vh !important;
-      }
-      @media (min-width: 768px) {
-        #inicio > div {
-          min-height: 86vh !important;
+        /* Hero más alto (móvil y desktop) */
+        #inicio>div {
+            min-height: 78vh !important;
         }
-      }
 
-      /* Header fijo sin tocar clases Tailwind; evitamos tapar el contenido */
-      header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-      }
-      body.has-fixed-header {
-        padding-top: var(--header-h, 64px);
-      }
+        @media (min-width: 768px) {
+            #inicio>div {
+                min-height: 86vh !important;
+            }
+        }
+
+        /* Header fijo sin tocar clases Tailwind; evitamos tapar el contenido */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+
+        body.has-fixed-header {
+            padding-top: var(--header-h, 64px);
+        }
     </style>
 
     <style id="fix-sticky-overrides">
-      /* Forzamos fixed sobre la clase .sticky de Tailwind */
-      header.sticky,
-      header[class*="sticky"] {
-        position: fixed !important;
-        top: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
-      }
+        /* Forzamos fixed sobre la clase .sticky de Tailwind */
+        header.sticky,
+        header[class*="sticky"] {
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+        }
 
-      /* Fallback de padding-top por si el JS aún no corrió */
-      body.has-fixed-header {
-        padding-top: var(--header-h, 64px);
-      }
+        /* Fallback de padding-top por si el JS aún no corrió */
+        body.has-fixed-header {
+            padding-top: var(--header-h, 64px);
+        }
     </style>
 
     <style id="menu-mobile-css">
-      :root {
-        --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
-      }
-      /* Panel móvil que se despliega bajo el header fijo */
-      #mobileMenu {
-        position: fixed;
-        top: var(--header-h, 64px);
-        left: 0;
-        right: 0;
-        background: rgba(255, 255, 255, 0.96);
-        -webkit-backdrop-filter: blur(6px);
-        backdrop-filter: blur(6px);
-        border-bottom: 1px solid #e0e0e0;
-        transform-origin: top;
-        transform: scaleY(0);
-        opacity: 0;
-        transition: transform 0.25s var(--ease), opacity 0.25s var(--ease);
-        max-height: calc(100dvh - var(--header-h, 64px));
-        overflow: auto;
-        z-index: 49; /* debajo del header (50) */
-      }
-      .dark #mobileMenu {
-        background: rgba(42, 42, 42, 0.96);
-        border-bottom-color: #424242;
-      }
-      #mobileMenu.open {
-        transform: scaleY(1);
-        opacity: 1;
-      }
-      /* Links del panel */
-      #mobileMenu a {
-        display: block;
-        padding: 14px 8px;
-      }
-      #mobileMenu .cta-mobile {
-        margin: 8px 0 4px;
-      }
-      /* Botón hamburguesa */
-      #burger {
-        transition: transform 0.18s var(--ease);
-      }
-      #burger[aria-expanded="true"] {
-        transform: rotate(90deg);
-      }
-      /* Evitar desplazamiento del body cuando el menú está abierto (opcional) */
-      body.menu-open {
-        overflow: hidden;
-      }
+        :root {
+            --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+        }
+
+        /* Panel móvil que se despliega bajo el header fijo */
+        #mobileMenu {
+            position: fixed;
+            top: var(--header-h, 64px);
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.96);
+            -webkit-backdrop-filter: blur(6px);
+            backdrop-filter: blur(6px);
+            border-bottom: 1px solid #e0e0e0;
+            transform-origin: top;
+            transform: scaleY(0);
+            opacity: 0;
+            transition: transform 0.25s var(--ease), opacity 0.25s var(--ease);
+            max-height: calc(100dvh - var(--header-h, 64px));
+            overflow: auto;
+            z-index: 49;
+            /* debajo del header (50) */
+        }
+
+        .dark #mobileMenu {
+            background: rgba(42, 42, 42, 0.96);
+            border-bottom-color: #424242;
+        }
+
+        #mobileMenu.open {
+            transform: scaleY(1);
+            opacity: 1;
+        }
+
+        /* Links del panel */
+        #mobileMenu a {
+            display: block;
+            padding: 14px 8px;
+        }
+
+        #mobileMenu .cta-mobile {
+            margin: 8px 0 4px;
+        }
+
+        /* Botón hamburguesa */
+        #burger {
+            transition: transform 0.18s var(--ease);
+        }
+
+        #burger[aria-expanded="true"] {
+            transform: rotate(90deg);
+        }
+
+        /* Evitar desplazamiento del body cuando el menú está abierto (opcional) */
+        body.menu-open {
+            overflow: hidden;
+        }
     </style>
 
     <style id="whatsapp-fab">
-      @keyframes fab-pop { from { transform: scale(.9); opacity:.0 } to { transform: scale(1); opacity:1 } }
+        @keyframes fab-pop {
+            from {
+                transform: scale(.9);
+                opacity: .0
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1
+            }
+        }
     </style>
 
     <script>
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              primary: "#C68D3D" /* botón/CTA color cartón */,
-              primaryDark: "#A3712C",
-              brandBrown: "#6B4B2A" /* texto marca */,
-              brandBeige: "#E5C99B",
-              "background-light": "#F5F5F5",
-              "background-dark": "#1a1a1a",
-              "text-light": "#333333",
-              "text-dark": "#E0E0E0",
-              "surface-light": "#FFFFFF",
-              "surface-dark": "#2a2a2a",
-              "border-light": "#E0E0E0",
-              "border-dark": "#424242",
-              "beige-light": "#F5F5DC",
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#C68D3D" /* botón/CTA color cartón */,
+                        primaryDark: "#A3712C",
+                        brandBrown: "#6B4B2A" /* texto marca */,
+                        brandBeige: "#E5C99B",
+                        "background-light": "#F5F5F5",
+                        "background-dark": "#1a1a1a",
+                        "text-light": "#333333",
+                        "text-dark": "#E0E0E0",
+                        "surface-light": "#FFFFFF",
+                        "surface-dark": "#2a2a2a",
+                        "border-light": "#E0E0E0",
+                        "border-dark": "#424242",
+                        "beige-light": "#F5F5DC",
+                    },
+                    fontFamily: { display: ["Montserrat", "sans-serif"] },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px",
+                    },
+                },
             },
-            fontFamily: { display: ["Montserrat", "sans-serif"] },
-            borderRadius: {
-              DEFAULT: "0.25rem",
-              lg: "0.5rem",
-              xl: "0.75rem",
-              full: "9999px",
-            },
-          },
-        },
-      };
+        };
     </script>
-  </head>
-  <body
-    class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark"
-  >
-    <div
-      class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden"
-    >
-      <header
-        class="sticky top-0 z-50 w-full bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur-sm border-b border-border-light dark:border-border-dark shadow-sm"
-      >
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex items-center justify-between h-16">
-            <!-- Marca -->
-            <div class="flex items-center gap-4">
-              <img
-                src="img/logo-cartoneria-ag.png"
-                alt="Cartonería Angel Gabriel"
-                class="h-8 w-8 object-contain"
-                loading="eager"
-                decoding="async"
-              />
-              <h2 class="text-brandBrown text-lg font-bold">
-                Cartoneria Angel Gabriel
-              </h2>
+
+    <style id="whatsapp-fab-css">
+        :root {
+            --wsp-size: 72px;
+            /* diámetro del botón */
+            --wsp-gap: 22px;
+            /* separación a bordes */
+            --wsp-color: #25D366;
+            /* verde WhatsApp */
+            --wsp-ring: #ffffff;
+            /* anillo externo */
+            --ease: cubic-bezier(.2, .6, .2, 1);
+        }
+
+        .wsp-fab {
+            position: fixed;
+            right: var(--wsp-gap);
+            bottom: var(--wsp-gap);
+            width: var(--wsp-size);
+            height: var(--wsp-size);
+            z-index: 70;
+        }
+
+        .wsp-fab>a {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            border-radius: 9999px;
+            background: var(--wsp-color);
+            box-shadow: 0 12px 34px rgba(0, 0, 0, .28);
+            transition: transform .18s var(--ease), box-shadow .18s var(--ease);
+            outline: none;
+        }
+
+        .wsp-fab>a::before {
+            content: "";
+            position: absolute;
+            inset: -7px;
+            border-radius: inherit;
+            box-shadow: 0 0 0 5px var(--wsp-ring) inset;
+            opacity: .98;
+            pointer-events: none;
+        }
+
+        .wsp-fab>a:hover {
+            transform: translateY(-2px) scale(1.04);
+        }
+
+        .wsp-fab img,
+        .wsp-fab svg {
+            width: 58%;
+            height: 58%;
+            display: block;
+        }
+
+        /* Tooltip */
+        .wsp-tooltip {
+            position: absolute;
+            right: calc(100% + 12px);
+            bottom: 10px;
+            background: #fff;
+            color: #374151;
+            padding: 10px 14px;
+            border-radius: 9999px;
+            font-size: 14px;
+            line-height: 1;
+            white-space: nowrap;
+            box-shadow: 0 10px 26px rgba(0, 0, 0, .18);
+            opacity: 0;
+            transform: translateX(6px);
+            pointer-events: none;
+            transition: opacity .18s var(--ease), transform .18s var(--ease);
+        }
+
+        .wsp-tooltip::after {
+            content: "";
+            position: absolute;
+            right: -7px;
+            bottom: 14px;
+            border: 7px solid transparent;
+            border-left-color: #fff;
+        }
+
+        @media (prefers-color-scheme:dark) {
+            .wsp-tooltip {
+                background: #1f2937;
+                color: #e5e7eb;
+            }
+
+            .wsp-tooltip::after {
+                border-left-color: #1f2937;
+            }
+        }
+
+        /* Solo mostrar tooltip en dispositivos con hover real */
+        @media (hover:hover) and (pointer:fine) {
+
+            .wsp-fab>a:hover+.wsp-tooltip,
+            .wsp-fab>a:focus+.wsp-tooltip {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        /* Móvil: un poco más compacto y sin tooltip */
+        @media (max-width:480px) {
+            :root {
+                --wsp-size: 64px;
+                --wsp-gap: 16px;
+            }
+
+            .wsp-tooltip {
+                display: none;
+            }
+        }
+    </style>
+
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
+    <div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+        <header
+            class="sticky top-0 z-50 w-full bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur-sm border-b border-border-light dark:border-border-dark shadow-sm">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <!-- Marca -->
+                    <div class="flex items-center gap-4">
+                        <img src="img/logo-cartoneria-ag.png" alt="Cartonería Angel Gabriel"
+                            class="h-8 w-8 object-contain" loading="eager" decoding="async" />
+                        <h2 class="text-brandBrown text-lg font-bold">
+                            Cartoneria Angel Gabriel
+                        </h2>
+                    </div>
+
+                    <!-- Navegación desktop -->
+                    <nav class="hidden md:flex items-center gap-8">
+                        <a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors"
+                            href="#inicio">Inicio</a>
+                        <a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors"
+                            href="#nosotros">Nosotros</a>
+                        <a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors"
+                            href="#productos">Productos</a>
+                        <a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors"
+                            href="#galeria">Galería</a>
+                        <a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors"
+                            href="#contacto">Contacto</a>
+                    </nav>
+
+                    <!-- Acciones -->
+                    <div class="flex items-center gap-3">
+                        <!-- CTA desktop -->
+                        <a href="https://wa.me/51981380050?text=Hola,%20deseo%20una%20cotizaci%C3%B3n%20de%20cajas%20de%20cart%C3%B3n.%20Los%20contacto%20desde%20el%20sitio%20web.%20Gracias."
+                            class="hidden md:flex min-w-[84px] items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-base font-bold tracking-wide hover:bg-primary/90 transition-colors"
+                            target="_blank" rel="noopener">
+                            <span class="truncate">Solicitar Cotización</span>
+                        </a>
+
+                        <!-- Botón hamburguesa móvil -->
+                        <button id="burger"
+                            class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-border-light dark:border-border-dark text-text-light dark:text-text-dark"
+                            aria-controls="mobileMenu" aria-expanded="false" aria-label="Abrir menú">
+                            <span class="material-symbols-outlined">menu</span>
+                        </button>
+                    </div>
+                </div>
             </div>
+        </header>
 
-            <!-- Navegación desktop -->
-            <nav class="hidden md:flex items-center gap-8">
-              <a
-                class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors"
-                href="#inicio"
-                >Inicio</a
-              >
-              <a
-                class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors"
-                href="#nosotros"
-                >Nosotros</a
-              >
-              <a
-                class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors"
-                href="#productos"
-                >Productos</a
-              >
-              <a
-                class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors"
-                href="#galeria"
-                >Galería</a
-              >
-              <a
-                class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors"
-                href="#contacto"
-                >Contacto</a
-              >
-            </nav>
-
-            <!-- Acciones -->
-            <div class="flex items-center gap-3">
-              <!-- CTA desktop -->
-              <a href="https://wa.me/51981380050?text=Hola,%20deseo%20una%20cotizaci%C3%B3n%20de%20cajas%20de%20cart%C3%B3n.%20Los%20contacto%20desde%20el%20sitio%20web.%20Gracias."
-                class="hidden md:flex min-w-[84px] items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-base font-bold tracking-wide hover:bg-primary/90 transition-colors"
-                target="_blank" rel="noopener">
-                <span class="truncate">Solicitar Cotización</span>
-              </a>
-
-              <!-- Botón hamburguesa móvil -->
-              <button
-                id="burger"
-                class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-border-light dark:border-border-dark text-text-light dark:text-text-dark"
-                aria-controls="mobileMenu"
-                aria-expanded="false"
-                aria-label="Abrir menú"
-              >
-                <span class="material-symbols-outlined">menu</span>
-              </button>
+        <!-- Panel móvil -->
+        <div id="mobileMenu" class="md:hidden">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-2">
+                <nav class="flex flex-col divide-y divide-border-light dark:divide-border-dark">
+                    <a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors"
+                        href="#inicio">Inicio</a>
+                    <a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors"
+                        href="#nosotros">Nosotros</a>
+                    <a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors"
+                        href="#productos">Productos</a>
+                    <a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors"
+                        href="#galeria">Galería</a>
+                    <a class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors"
+                        href="#contacto">Contacto</a>
+                </nav>
+                <!-- CTA móvil -->
+                <a href="https://wa.me/51981380050?text=Hola,%20deseo%20una%20cotizaci%C3%B3n%20de%20cajas%20de%20cart%C3%B3n.%20Los%20contacto%20desde%20el%20sitio%20web.%20Gracias."
+                    class="w-full mt-3 flex md:hidden min-w-[84px] items-center justify-center overflow-hidden rounded-lg h-11 px-4 bg-primary text-white text-base font-bold tracking-wide hover:bg-primary/90 transition-colors"
+                    target="_blank" rel="noopener">
+                    <span class="truncate">Solicitar Cotización</span>
+                </a>
             </div>
-          </div>
         </div>
-      </header>
 
-      <!-- Panel móvil -->
-      <div id="mobileMenu" class="md:hidden">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-2">
-          <nav
-            class="flex flex-col divide-y divide-border-light dark:divide-border-dark"
-          >
-            <a
-              class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors"
-              href="#inicio"
-              >Inicio</a
-            >
-            <a
-              class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors"
-              href="#nosotros"
-              >Nosotros</a
-            >
-            <a
-              class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors"
-              href="#productos"
-              >Productos</a
-            >
-            <a
-              class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors"
-              href="#galeria"
-              >Galería</a
-            >
-            <a
-              class="text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors"
-              href="#contacto"
-              >Contacto</a
-            >
-          </nav>
-          <!-- CTA móvil -->
-          <a href="https://wa.me/51981380050?text=Hola,%20deseo%20una%20cotizaci%C3%B3n%20de%20cajas%20de%20cart%C3%B3n.%20Los%20contacto%20desde%20el%20sitio%20web.%20Gracias."
-            class="w-full mt-3 flex md:hidden min-w-[84px] items-center justify-center overflow-hidden rounded-lg h-11 px-4 bg-primary text-white text-base font-bold tracking-wide hover:bg-primary/90 transition-colors"
-            target="_blank" rel="noopener">
-            <span class="truncate">Solicitar Cotización</span>
-          </a>
-        </div>
-      </div>
-
-      <main class="flex-grow">
-        <section class="relative" id="inicio">
-          <div
-            class="w-full min-h-[60vh] md:min-h-[70vh] flex flex-col items-center justify-center bg-cover bg-center bg-no-repeat p-4"
-            data-alt="Stacks of cardboard boxes in a well-lit warehouse"
-            style="
+        <main class="flex-grow">
+            <section class="relative" id="inicio">
+                <div class="w-full min-h-[60vh] md:min-h-[70vh] flex flex-col items-center justify-center bg-cover bg-center bg-no-repeat p-4"
+                    data-alt="Stacks of cardboard boxes in a well-lit warehouse" style="
               background-image: linear-gradient(
                   rgba(0, 0, 0, 0.5) 0%,
                   rgba(0, 0, 0, 0.7) 100%
                 ),
                 url('https://lh3.googleusercontent.com/aida-public/AB6AXuAK4HTLoy2HDf4IV8e8JNkp0R6gov3AsIGG7nPjofEIAba-ItIJbRM1v-cHk9FTqgNuFvLG9q4DzYBsk4CxW7EQ8wvn-OsIrsAF-DXvxwX7Sakn3SJSEoATrL1w8rPznZlKy5OQw7msIrYC1SPi-lrktWqYE0ubdcgLsSdVksTH9geR0up19ko_q0UcQ8AupRhnsFh19WHeSehwwquP7JX7gOkhqp1f2TifRtVW4gg9xAykCI7uRDsXz3TiGYnxPKjGTH2E-yhENw');
-            "
-          >
-            <div class="flex flex-col gap-4 text-center max-w-3xl">
-              <h1
-                class="text-white text-4xl md:text-6xl font-black leading-tight tracking-tight"
-              >
-                Soluciones de Empaque a la Medida
-              </h1>
-              <h2
-                class="text-gray-200 text-lg md:text-xl font-normal leading-normal"
-              >
-                Calidad – Precio económico – Eficiencia. Cajas de cartón para
-                cada necesidad.
-              </h2>
-              <div class="mt-4">
-                <a href="https://wa.me/51981380050?text=Hola,%20deseo%20una%20cotizaci%C3%B3n%20de%20cajas%20de%20cart%C3%B3n.%20Los%20contacto%20desde%20el%20sitio%20web.%20Gracias."
-                    class="flex mx-auto min-w-[84px] items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-white text-base font-bold tracking-wide hover:bg-primaryDark transition-colors"
-                    target="_blank" rel="noopener">
-                    <span class="truncate">Solicitar Cotización</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section class="py-16 md:py-24 bg-surface-light dark:bg-surface-dark">
-          <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col gap-10">
-              <div class="text-center flex flex-col items-center gap-4">
-                <h2
-                  class="text-text-light dark:text-text-dark text-3xl md:text-4xl font-bold leading-tight tracking-tight max-w-2xl"
-                >
-                  Nuestra Promesa de Valor
-                </h2>
-                <p
-                  class="text-text-light/80 dark:text-text-dark/80 text-base font-normal leading-normal max-w-3xl"
-                >
-                  Nos comprometemos a ofrecer productos que cumplen con los más
-                  altos estándares, a precios competitivos y con la eficiencia
-                  que tu negocio requiere.
-                </p>
-              </div>
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            ">
+                    <div class="flex flex-col gap-4 text-center max-w-3xl">
+                        <h1 class="text-white text-4xl md:text-6xl font-black leading-tight tracking-tight">
+                            Soluciones de Empaque a la Medida
+                        </h1>
+                        <h2 class="text-gray-200 text-lg md:text-xl font-normal leading-normal">
+                            Calidad – Precio económico – Eficiencia. Cajas de cartón para
+                            cada necesidad.
+                        </h2>
+                        <div class="mt-4">
+                            <a href="https://wa.me/51981380050?text=Hola,%20deseo%20una%20cotizaci%C3%B3n%20de%20cajas%20de%20cart%C3%B3n.%20Los%20contacto%20desde%20el%20sitio%20web.%20Gracias."
+                                class="flex mx-auto min-w-[84px] items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-white text-base font-bold tracking-wide hover:bg-primaryDark transition-colors"
+                                target="_blank" rel="noopener">
+                                <span class="truncate">Solicitar Cotización</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="py-16 md:py-24 bg-surface-light dark:bg-surface-dark">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex flex-col gap-10">
+                        <div class="text-center flex flex-col items-center gap-4">
+                            <h2
+                                class="text-text-light dark:text-text-dark text-3xl md:text-4xl font-bold leading-tight tracking-tight max-w-2xl">
+                                Nuestra Promesa de Valor
+                            </h2>
+                            <p
+                                class="text-text-light/80 dark:text-text-dark/80 text-base font-normal leading-normal max-w-3xl">
+                                Nos comprometemos a ofrecer productos que cumplen con los más
+                                altos estándares, a precios competitivos y con la eficiencia
+                                que tu negocio requiere.
+                            </p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div
+                                class="flex flex-col gap-3 rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark p-6 text-center items-center">
+                                <span class="material-symbols-outlined text-primary text-4xl">verified</span>
+                                <div class="flex flex-col gap-1">
+                                    <h3 class="text-text-light dark:text-text-dark text-lg font-bold">
+                                        Calidad Superior
+                                    </h3>
+                                    <p
+                                        class="text-text-light/80 dark:text-text-dark/80 text-sm font-normal leading-normal">
+                                        Utilizamos materiales de primera para garantizar la
+                                        resistencia y durabilidad de nuestras cajas.
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                class="flex flex-col gap-3 rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark p-6 text-center items-center">
+                                <span class="material-symbols-outlined text-primary text-4xl">savings</span>
+                                <div class="flex flex-col gap-1">
+                                    <h3 class="text-text-light dark:text-text-dark text-lg font-bold">
+                                        Precio Económico
+                                    </h3>
+                                    <p
+                                        class="text-text-light/80 dark:text-text-dark/80 text-sm font-normal leading-normal">
+                                        Ofrecemos precios competitivos sin comprometer la calidad
+                                        de nuestros productos.
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                class="flex flex-col gap-3 rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark p-6 text-center items-center">
+                                <span class="material-symbols-outlined text-primary text-4xl">local_shipping</span>
+                                <div class="flex flex-col gap-1">
+                                    <h3 class="text-text-light dark:text-text-dark text-lg font-bold">
+                                        Eficiencia Garantizada
+                                    </h3>
+                                    <p
+                                        class="text-text-light/80 dark:text-text-dark/80 text-sm font-normal leading-normal">
+                                        Procesos optimizados para entregar tus pedidos de manera
+                                        rápida y confiable.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <a href="https://wa.me/51981380050?text=Hola,%20deseo%20una%20cotizaci%C3%B3n%20de%20cajas%20de%20cart%C3%B3n.%20Los%20contacto%20desde%20el%20sitio%20web.%20Gracias."
+                                class="inline-flex items-center rounded-lg h-11 px-6 bg-primary text-white text-base font-bold hover:bg-primaryDark transition-colors"
+                                target="_blank" rel="noopener">
+                                Contáctanos
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="py-16 md:py-24 bg-beige-light dark:bg-surface-dark/50">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl md:text-4xl font-bold text-text-light dark:text-text-dark">
+                            Tu Socio en Cada Paso del Proceso
+                        </h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                        <div class="flex flex-col items-center md:items-start text-center md:text-left gap-6">
+                            <img class="rounded-lg shadow-lg object-cover w-full h-80"
+                                data-alt="Professional consultant in a meeting, discussing plans with a client."
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIZt_q7-vGFyUkWKTAKFtt-rXj_BSA87HbUiUQtjGoRo9oliC434_FJKS2edl0pzehVl5fwQuyx6t7V4CzFv9Fik_rDT66PlZM-ni8zSdIML-_m83yviC9grc7XVuIV2ld-sPPpNDTu7xDTWapgQdB1NH6Temgzh64A8aBmuvgc2lQARqr1h62yyMjs_4h7MOYk_qFTjZkXsLYsjQcIrOGrqdIXJMG7y4xCQi6k9TmVCVVUGPxAMbPkKLpUH5nqzejWLOEn3rVoA" />
+                            <div class="flex flex-col gap-2">
+                                <h3 class="text-2xl font-bold text-text-light dark:text-text-dark">
+                                    Asesoramiento Personalizado
+                                </h3>
+                                <p class="text-text-light/80 dark:text-text-dark/80 leading-relaxed">
+                                    Contamos con personal altamente capacitado para resolver tus
+                                    problemas de envase y embalaje. Te asesoramos desde el
+                                    primer contacto hasta que tu producto esté perfectamente
+                                    embalado.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center md:items-start text-center md:text-left gap-6">
+                            <img class="rounded-lg shadow-lg object-cover w-full h-80"
+                                data-alt="Well-organized warehouse with stacks of ready-to-ship cardboard boxes."
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeqCRj272A-yIK_qblSaH60S0G8VYHUScMTgVUCKhTC_RPl3hKE4WqeYaGbngIDsy7y7Ol9-N19qWYI7dQsmOQn9t7JpgT8TpsyGq1yNS9-KeJdLhTzb4mWh8rWGXNXjsmdq2UQR6J1YSffV58w6rzjzEbb1s_JwubeAC7ULoiU7oDRcccjVce2FsRwmG1vs6v_TOLXpGAplpv-S65pmRrBABsJqyKaaqLoMDf_u52V9YiaqeCId843iFjjqy0YCCyfLQZC5hHVQ" />
+                            <div class="flex flex-col gap-2">
+                                <h3 class="text-2xl font-bold text-text-light dark:text-text-dark">
+                                    Seguimiento Constante
+                                </h3>
+                                <p class="text-text-light/80 dark:text-text-dark/80 leading-relaxed">
+                                    Nuestro trabajo continúa incluso después de la entrega. Nos
+                                    aseguramos de que tus cajas cumplan su objetivo y que tu
+                                    stock sea repuesto constantemente, atendiendo tus nuevos
+                                    requerimientos.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-4">
+                    <a href="https://wa.me/51981380050?text=Hola,%20deseo%20una%20cotizaci%C3%B3n%20de%20cajas%20de%20cart%C3%B3n.%20Los%20contacto%20desde%20el%20sitio%20web.%20Gracias."
+                        class="inline-flex items-center rounded-lg h-11 px-6 bg-primary text-white text-base font-bold hover:bg-primaryDark transition-colors"
+                        target="_blank" rel="noopener">
+                        Quiero asesoría
+                    </a>
+                </div>
+            </section>
+            <section class="py-16 md:py-24" id="nosotros">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <img class="rounded-lg shadow-lg object-cover w-full h-full"
+                                data-alt="Team members discussing plans over cardboard box samples in a modern office."
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoMyRlVQ4jJYji2JczYpRtRqffulBhrYbkYRGkbHGmZTXC56AxIG7NSDuJiV2rfuIQLHWqXx5G7MLhim853GWlYY3JXFXIgc_0hiBcTImy1ScWm35GcKjao7Wd7xILVXheamcG8B9586gBEULto0c0WkcCYhGOfv2wvtlmpkwgjyUND26klIZOUSPtGpPvDeLptRv2S_74HGRc7mCILzcgOOyjt3vjfha-WS8eDZ0ApIQP5bFBsYtF4ls0R5Pi78Q_Eh_4D5C0Uw" />
+                        </div>
+                        <div class="flex flex-col gap-4">
+                            <h2 class="text-3xl md:text-4xl font-bold text-text-light dark:text-text-dark">
+                                Sobre Nosotros
+                            </h2>
+                            <p class="text-text-light/80 dark:text-text-dark/80 text-base font-normal leading-relaxed">
+                                En Cartoneria Angel Gabriel, somos más que fabricantes de
+                                cajas; somos socios estratégicos en la cadena de suministro de
+                                nuestros clientes. Con años de experiencia en la industria,
+                                nuestro equipo está dedicado a entender tus necesidades y
+                                ofrecerte soluciones de empaque personalizadas que protejan
+                                tus productos y optimicen tus costos. Nuestra misión es
+                                impulsar tu negocio con empaques confiables y de alta calidad.
+                            </p>
+                            <a href="https://wa.me/51981380050?text=Hola,%20deseo%20una%20cotizaci%C3%B3n%20de%20cajas%20de%20cart%C3%B3n.%20Los%20contacto%20desde%20el%20sitio%20web.%20Gracias."
+                                class="mt-2 inline-flex w-max items-center rounded-lg h-11 px-6 bg-primary text-white text-base font-bold hover:bg-primaryDark transition-colors"
+                                target="_blank" rel="noopener">
+                                Hablemos
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="py-16 md:py-24 bg-surface-light dark:bg-surface-dark" id="productos">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl md:text-4xl font-bold text-text-light dark:text-text-dark">
+                            Nuestros Productos y Servicios
+                        </h2>
+                        <p class="mt-4 max-w-2xl mx-auto text-text-light/80 dark:text-text-dark/80">
+                            Ofrecemos una amplia gama de soluciones de empaque para
+                            satisfacer las necesidades de diversas industrias.
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="group relative overflow-hidden rounded-lg">
+                            <img class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+                                data-alt="Stacked e-commerce shipping boxes of various sizes."
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFQTjpn9ZHTfGj8PhDeC0abO-Eu4YMXzjgs6ZFuOnIXms4cA6ToNljFb_WnaF3IbBUHFUoCfghIFnLSK68f31IAD1AIOJ8Itcb88N98FyOXjFYp-m6EQm9xHk7MVD-F048uZJ0hHV0DWC6iMUA5krUylrQBMemqxeJeivIAIDn2nDimP-Uv7Hdj300PWPFIR1FpSH4h3f59vYoHQm6BTXAWJwfykaFxXr3g_ZlbYenyN-lXn3hHvZ_VUaOypAQbGxfQ_I94gGPEg" />
+                            <div class="absolute inset-0 bg-black/50 flex items-end p-4">
+                                <h3 class="text-white text-lg font-bold">
+                                    Cajas para E-commerce
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="group relative overflow-hidden rounded-lg">
+                            <img class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+                                data-alt="A plain pizza box on a wooden table."
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAW3SOGnKGPbD5J0gjOeq_isJ8fTNYRPM54t5-VYX8QCEePkARZUwBgOgsd5Lwhp9DyT-A_9izo3LNGYASVAqEmAC7U2wnoJnM9DH3cowRyqm_UyjYURPaPM0gFh60EDK-haGrVbFzkkXA_6GET5M3Lu51WsUZhL43NfotOW4ewni-BWVcyYncLPxo_cFsuJHhgpJMTCFEULJFK7AlHLfJuqAq-WkGxfSTKYG531-vZy-DCLk8RO0enyj5fxvE5_yej4XyLvaCV5A" />
+                            <div class="absolute inset-0 bg-black/50 flex items-end p-4">
+                                <h3 class="text-white text-lg font-bold">
+                                    Cajas para Alimentos
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="group relative overflow-hidden rounded-lg">
+                            <img class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+                                data-alt="Large industrial cardboard boxes on a pallet."
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBF23Y8cAfgCv-fnD_RRFZreevIG38JbomCvlqWFKaNRbXzedQ7F0nbVKw__K_Fv3JRV9B9ULgFJ-OSMAgQ42aZiwGJ0X9_AYMGbalnRUdxGhlGSC1eGIjyDqzCTZg8orNla-frL90BAF3x42Iif2KKy_TFWXLbRsKpwfuSL4XFB7Ge8ugTa6twrFSAicUNz9CTk2CyARlYxpyCoTAK94IDKZ-UmuvxnTvTXsUW6WU8zJlXCei6GRQrOGdke9dZYSSXJDJ0St8dQg" />
+                            <div class="absolute inset-0 bg-black/50 flex items-end p-4">
+                                <h3 class="text-white text-lg font-bold">
+                                    Empaques Industriales
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="group relative overflow-hidden rounded-lg">
+                            <img class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+                                data-alt="A custom printed cardboard box with a logo."
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZUECyF4bW5Dz0-GcG4kOa0NFOmIt5QGXUhido0alOGrICkthHWh92zD2n5VxUDJQVm77Nr2iQX5mvDfTKqcEdv2j4hs8upVOSn7qp7ag6nq6BDGNQUI6HSzmoPoUjJhpwfsjKhs69pnQrSGTYhYORgdIGtTiNhOsFwr0K-Gi_qRZQh0ujQGgzVqpjoAjjkVT_LZuRsybvR6yh9vHaA1y6XrJ9Jg0FwGuNibfvzyoWZKv0ENvPDusCCbUzwOGVuv02EXLHOydh6Q" />
+                            <div class="absolute inset-0 bg-black/50 flex items-end p-4">
+                                <h3 class="text-white text-lg font-bold">
+                                    Cajas Personalizadas
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center pt-8 md:pt-10">
+                    <a href="https://wa.me/51981380050?text=Hola,%20deseo%20una%20cotizaci%C3%B3n%20de%20cajas%20de%20cart%C3%B3n.%20Los%20contacto%20desde%20el%20sitio%20web.%20Gracias."
+                        class="inline-flex items-center rounded-lg h-11 px-6 bg-primary text-white text-base font-bold hover:bg-primaryDark transition-colors"
+                        target="_blank" rel="noopener">
+                        Solicitar cotización
+                    </a>
+                </div>
+            </section>
+            <section class="py-16 md:py-24" id="galeria">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl md:text-4xl font-bold text-text-light dark:text-text-dark">
+                            Galería de Productos
+                        </h2>
+                        <p class="mt-4 max-w-2xl mx-auto text-text-light/80 dark:text-text-dark/80">
+                            Un vistazo a la calidad y versatilidad de nuestros empaques.
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="grid gap-4">
+                            <div>
+                                <img class="h-auto max-w-full rounded-lg" data-alt="A simple cardboard box."
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPd20SDU6NxP4OP9Q8tu8vJne8yLTJNx1VfmEeVPmwRoujnfi_ICl49ICJFz3NvrpA0-6YUWVBrkDxTuqVIJOK70RTS4gag6zZd4sMVAS9qS0acZvCC3OoRo83qiEhxlDKJSo0A8BhkzqdpXsrPNEKmNbroty7YCb3UgfDxTKKVPfC-UG91nVHFj8u6QLl6VqIYrLxziRMXberZR4GyPT90nQOZF6ZbpZ7NO-q53Z-YX2mwUIefnt6YfI9cqDxSLLtZWMZAiDO6Q" />
+                            </div>
+                            <div>
+                                <img class="h-auto max-w-full rounded-lg" data-alt="Shipping boxes for e-commerce."
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtuLHwg73fQQorMe_nzlW98nO5MbQCDQWHBd9-_gG9jiFWlnyIlWlqLtpoBKRuC0K_dLx4waiVWwB-_bGLetCQjBv9jcBIM5JIDNiBGBlvZz8iDCzZSdbIm0nQ-u6BfdOPvzzONwrsmCOZ_RTRgSeaBZTClT6a3VmmHKidMKrO21iAIfPY-35TEEAybGtRTEWWt2g6ZxwH2pMY60Bx9Zhm_ZG0J0hhvRSCFjAamloWZK0RxIz8I63E4SJ58Wu0hGXoPWiHA5FiqA" />
+                            </div>
+                            <div>
+                                <img class="h-auto max-w-full rounded-lg" data-alt="Cardboard box with fragile tape."
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDG7Lfin92ThVonTbfw447oiB_a1vrObxIfHW3BZ_eF1qjc88hQz-ta4aQnFMS6EPeoPABs9GOD5zh-WSIIC5RCB9VedWwUnVGXb5zFw_tg56EixdDwEyzjua_08vBTl1jvC1tz8i1UkGqmt-S2NqDVvhOzIKkTFydsIz0vbjlOmwclKgUQHl_ln3cW7iSdm_zyVGSyxSdd-t2vqw9iOZzp0c1L2ur4lEj3HbYoK3Qq9EmY-C0SO_qtLu1dgwatrsDezrmctL-wsw" />
+                            </div>
+                        </div>
+                        <div class="grid gap-4">
+                            <div>
+                                <img class="h-auto max-w-full rounded-lg" data-alt="Woman holding a cardboard box."
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDA3XmwagAeJS-8fMESE-aoswjfYn6eFJhAG1qbio-qBaa4ao2-8zy085V3suZD2bO2gyzIW73Zuprm4LmTGRAEDXF0AUK0x3s8K3g7pAEpYthYUnkMeaCSW2LA5ox_NHg6z2btPAmaCVpp8xV89y-ycOdHVOLCys_l8uEVnwApu4idPe1TKtzEkZB9-9qZ0CvAEQ6VkfLY3U2QczSDiOW4CksO9tE6w2Q3Dh3_x2YkTCjbekDFSvjejzGUOONOKNiKG9OLfw9XcA" />
+                            </div>
+                            <div>
+                                <img class="h-auto max-w-full rounded-lg" data-alt="A stack of flat, unassembled boxes."
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKNk6GgoDQrRmJx_QvvWP8u3vL9tiaqB5zbNvP7Ie3SPtWEPDIOe9JBvi1s05aBUuhS4BjY3zhUrZIwjBWDpSf8EE4kqPbz1nY5Cgj4iK8uv_had-I-wrCalPoIfUlRvx5Bz7YvyjzTtAFkVm-oCB1W8_cl0hXELCckTLE42JpvKdX1l6VivC4a2dfmOuvwgrpSyS4gAHIF2UCevNfsUcjcIF9rrhEpsWDFO5NHyPwqwis34S1KzSij_lL7ysOXhAwy4psYJT_3A" />
+                            </div>
+                            <div>
+                                <img class="h-auto max-w-full rounded-lg" data-alt="A blank pizza box."
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzAWtnYbvM5x2wRfV6dgXWnArzY6COB8uf2ZevALaU-XcagLeIL2m8ER9f3T4peKOIQ1UXZoxgHVfVANKmthK6r_Tr8D4o7egTi8fYJX6OxpgvKAZvKeQXyAutAeYJqfdHRcNxlXx5x2PmzANJwhHjaGyLjslaxeigz7uqmSDEFh83is2glepc3C_aoO5LcwcpTTIhS66gGSiOBtuO_yuCwln9ow6xoqfqswSy79LPCAmYW8xVbLrYD3cRjHnKI4xAwLXNUi-QHA" />
+                            </div>
+                        </div>
+                        <div class="grid gap-4">
+                            <div>
+                                <img class="h-auto max-w-full rounded-lg"
+                                    data-alt="Boxes on a conveyor belt in a factory."
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHsj5wDiqkGNjyCUt3pA0MPYg4tHPHXlTfaP3OZbWBlHaDUjkxWQB3hsdmVTJAjxTgaIfD-z8Rum7VdSX5Fp2FX95waJ6gqssXh6hFnMqfa6HkkxyQL6CLcZjoRSDL2rbLtURufitovIeSmbNnwNY3qyy3vRLyF_WeQiXWTjejyqiA_0woKBkZsL_GNxfzuw_4w-JlKppHu3yksVxTiZRiCIciXkddFXiet3KsJ4FOO9OTD6cYZS7wY36rPt63PrP0r9RWSsb2ng" />
+                            </div>
+                            <div>
+                                <img class="h-auto max-w-full rounded-lg"
+                                    data-alt="Large cardboard sheets ready for production."
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAr3UJRlNj298QlNXxYH8huTfg_fC205sCzIla-HNgX3edh9F9Rp-x9bjgh49-LpUHEHDxHSODJQMEp43MY4EZXOoEy4fXFnHpt41ut1EFtlQWkHmXjTsjZXxkaBwVsAmRBUyRwXh9cSd427ORu-HtdUPPqSK2HhStdMUsjlIQGF8VCHWBzE1cu0kveX1VxQjDR5BnPbJNXRxGqwuGVuUxVnn4g1TrQ3YX92tq15oRCLXdkR3LP9nIL6GdGjZvePK3mx-FmuUekUQ" />
+                            </div>
+                            <div>
+                                <img class="h-auto max-w-full rounded-lg" data-alt="A box with custom printing."
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmelV-YuaRpMJFxDm2ZBG1GSJESzG7dYn066NJWpqvdSYnGoIckfZ9LvJHkH5P92BWIQ8puFCQpR83vrftC1ywD5uTPKxHrD_834hvSqDj_i9pBzmd5Cfbzh0YGNx_M83TvDncMjIyvDP2ldsZ87Fux42ZLZ16L4KDPT7RVuMgfZYrQWPfyymhsqPhUVQxDTXauObx83uJBEgv3MOLNsQtZRQUuZBJzpVuilK6v2Bvuon9uPgYis3jBHnzWvLEwoCwxM5io6TIOw" />
+                            </div>
+                        </div>
+                        <div class="grid gap-4">
+                            <div>
+                                <img class="h-auto max-w-full rounded-lg" data-alt="Industrial-sized shipping boxes."
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHciIs6q_MQI5bp5aWWlBf5rDr62jFIGFroRYlztF4pcgrKVb0TdXFAjAXDILcg62NaPhaukVOQcCM9SyQz34APkePAPag5_Ud09NTdxWON92ChStpRliJ-hO-NlUgUhMXJ1Ma9-iX5sgYMGHEeLFnyBYAUXZ5r5Bb9qBhXPUrLqsSwpl96uC-8JhQmvCJ4TDhzSnPgjmKvopCXjmgznhhqLqjyOZ3TTUy8vTrpZAsT8048Gbi1KZbJHL7EkMA3x5gb0LsKvZQxw" />
+                            </div>
+                            <div>
+                                <img class="h-auto max-w-full rounded-lg" data-alt="A person packing items into a box."
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1FeR-ruv33ZYMrYn1xiMjjE23Bxc8bl_VzbbQ4ZF61vUzk8AijCTFyLN-LMqOj1__3unN0kUvKNcCZtIfdZr67iJl3mhkd0VDDM9GHVyM4NdmUO9gDw_xElJa3jtPQqf_WlTKDGAJjKdpbVs3A_oK2vrb03W3lp2FelioIZ_SR-xHNAkybBCtgPjFOLps2twg6Q_W3YQaKgYMvyC3lR0YMwNHzAl1JSauVIuaM0yM-A1eP2L0TOfdp-w5BjDwvUwxCulaej74Lg" />
+                            </div>
+                            <div>
+                                <img class="h-auto max-w-full rounded-lg" data-alt="Moving boxes stacked in a room."
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM1967lLfvEc1In37uWD1wjQfTX6OZTmxLjOP-8JNP-8XUYRkvA06fjfXerxsjsTE_3YKSxd-BFKUU1fxGt5PrwhNoD7n5yOsFYxzjxSMtn7MAoge5qmKFHhelUBCUbRTgEWeh-d5ASAKVJDFS2sH_wLQmKrF8rZAqAe3Fce2NoDx3L5pEsejxtmxkKq5dbPD5oAMWtSFR4jNOfz0CiGPSVh8QEOeoNJ8WJ00mBpP6FysVr338j2hWLe9VOZGKFzX6A-9769aORg" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-10">
+                    <a href="https://wa.me/51981380050?text=Hola,%20deseo%20una%20cotizaci%C3%B3n%20de%20cajas%20de%20cart%C3%B3n.%20Los%20contacto%20desde%20el%20sitio%20web.%20Gracias."
+                        class="inline-flex items-center rounded-lg h-11 px-6 bg-primary text-white text-base font-bold hover:bg-primaryDark transition-colors"
+                        target="_blank" rel="noopener">
+                        Quiero este tipo de caja
+                    </a>
+                </div>
+            </section>
+            <section class="py-16 md:py-24 bg-surface-light dark:bg-surface-dark" id="contacto">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                        <!-- Columna izquierda: título + texto + datos -->
+                        <div class="flex flex-col gap-8">
+                            <div class="space-y-3">
+                                <h2 class="text-3xl md:text-4xl font-bold text-text-light dark:text-text-dark">
+                                    Contáctanos
+                                </h2>
+                                <p class="text-text-light/80 dark:text-text-dark/80 max-w-xl">
+                                    ¿Listo para empezar? Llámanos, escríbenos o visítanos.
+                                    Estamos aquí para ayudarte.
+                                </p>
+                            </div>
+
+                            <div class="space-y-5">
+                                <div class="flex items-start gap-4">
+                                    <span
+                                        class="material-symbols-outlined text-primary text-2xl mt-1">location_on</span>
+                                    <div>
+                                        <h3 class="font-bold text-lg text-text-light dark:text-text-dark">
+                                            Dirección
+                                        </h3>
+                                        <p class="text-text-light/80 dark:text-text-dark/80">
+                                            Luis Espejo Tamayo 208, Cercado de Lima 15083
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start gap-4">
+                                    <span class="material-symbols-outlined text-primary text-2xl mt-1">call</span>
+                                    <div>
+                                        <h3 class="font-bold text-lg text-text-light dark:text-text-dark">
+                                            Teléfono
+                                        </h3>
+                                        <p class="text-text-light/80 dark:text-text-dark/80">
+                                            +51 981 380 050
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start gap-4">
+                                    <span class="material-symbols-outlined text-primary text-2xl mt-1">mail</span>
+                                    <div>
+                                        <h3 class="font-bold text-lg text-text-light dark:text-text-dark">
+                                            Email
+                                        </h3>
+                                        <p class="text-text-light/80 dark:text-text-dark/80">
+                                            gabrielorellana923@hotmail.com
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start gap-4">
+                                    <span class="material-symbols-outlined text-primary text-2xl mt-1">schedule</span>
+                                    <div>
+                                        <h3 class="font-bold text-lg text-text-light dark:text-text-dark">
+                                            Horario
+                                        </h3>
+                                        <p class="text-text-light/80 dark:text-text-dark/80">
+                                            Lunes–Viernes: 8:00 am – 6:00 pm
+                                        </p>
+                                        <p class="text-text-light/80 dark:text-text-dark/80">
+                                            Sábados: 8:00 am – 1:00 pm
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pt-2">
+                                <a href="https://wa.me/51981380050?text=Hola%20Cartoner%C3%ADa%20Angel%20Gabriel,%20quisiera%20una%20cotizaci%C3%B3n."
+                                    target="_blank" rel="noopener"
+                                    class="inline-flex items-center rounded-lg h-12 px-7 bg-primary text-white text-base md:text-lg font-bold hover:bg-primaryDark transition-colors">
+                                    Escríbenos por WhatsApp
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Columna derecha: mapa con altura controlada -->
+                        <!-- Derecha: mapa embebido -->
+                        <div class="rounded-lg overflow-hidden shadow-lg">
+                            <iframe class="w-full h-[320px] sm:h-[380px] lg:h-[460px] border-0"
+                                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3901.7022764814064!2d-77.060862!3d-12.063994!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c921e5f49faf%3A0xa495913b6ad857d7!2sLuis%20Espejo%20Tamayo%20208%2C%20Lima%2015083%2C%20Per%C3%BA!5e0!3m2!1ses!2sus!4v1761693382172!5m2!1ses!2sus"
+                                allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                                aria-label="Mapa de ubicación: Luis Espejo Tamayo 208, Cercado de Lima 15083"></iframe>
+                            <!-- <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3901.7022764814064!2d-77.060862!3d-12.063994!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c921e5f49faf%3A0xa495913b6ad857d7!2sLuis%20Espejo%20Tamayo%20208%2C%20Lima%2015083%2C%20Per%C3%BA!5e0!3m2!1ses!2sus!4v1761693382172!5m2!1ses!2sus"
+                                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+                            <div class="p-2 text-center">
+                                <a href="https://www.google.com/maps/place/Luis+Espejo+Tamayo+208,+Cercado+de+Lima+15083,+Per%C3%BA"
+                                    target="_blank" rel="noopener"
+                                    class="text-primary font-semibold hover:underline">Ver en Google Maps</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="bg-surface-dark text-gray-300">
+            <div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
                 <div
-                  class="flex flex-col gap-3 rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark p-6 text-center items-center"
-                >
-                  <span class="material-symbols-outlined text-primary text-4xl"
-                    >verified</span
-                  >
-                  <div class="flex flex-col gap-1">
-                    <h3
-                      class="text-text-light dark:text-text-dark text-lg font-bold"
-                    >
-                      Calidad Superior
-                    </h3>
-                    <p
-                      class="text-text-light/80 dark:text-text-dark/80 text-sm font-normal leading-normal"
-                    >
-                      Utilizamos materiales de primera para garantizar la
-                      resistencia y durabilidad de nuestras cajas.
+                    class="flex flex-col md:flex-row justify-between items-center text-center md:text-left space-y-4 md:space-y-0">
+                    <p class="text-sm">
+                        Diseñado por
+                        <a href="https://pixsellway.com" class="underline hover:no-underline" target="_blank"
+                            rel="noopener">PixSellWay</a>. Todos los derechos reservados.
                     </p>
-                  </div>
-                </div>
-                <div
-                  class="flex flex-col gap-3 rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark p-6 text-center items-center"
-                >
-                  <span class="material-symbols-outlined text-primary text-4xl"
-                    >savings</span
-                  >
-                  <div class="flex flex-col gap-1">
-                    <h3
-                      class="text-text-light dark:text-text-dark text-lg font-bold"
-                    >
-                      Precio Económico
-                    </h3>
-                    <p
-                      class="text-text-light/80 dark:text-text-dark/80 text-sm font-normal leading-normal"
-                    >
-                      Ofrecemos precios competitivos sin comprometer la calidad
-                      de nuestros productos.
-                    </p>
-                  </div>
-                </div>
-                <div
-                  class="flex flex-col gap-3 rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark p-6 text-center items-center"
-                >
-                  <span class="material-symbols-outlined text-primary text-4xl"
-                    >local_shipping</span
-                  >
-                  <div class="flex flex-col gap-1">
-                    <h3
-                      class="text-text-light dark:text-text-dark text-lg font-bold"
-                    >
-                      Eficiencia Garantizada
-                    </h3>
-                    <p
-                      class="text-text-light/80 dark:text-text-dark/80 text-sm font-normal leading-normal"
-                    >
-                      Procesos optimizados para entregar tus pedidos de manera
-                      rápida y confiable.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="text-center">
-                <a href="https://wa.me/51981380050?text=Hola,%20deseo%20una%20cotizaci%C3%B3n%20de%20cajas%20de%20cart%C3%B3n.%20Los%20contacto%20desde%20el%20sitio%20web.%20Gracias."
-                    class="inline-flex items-center rounded-lg h-11 px-6 bg-primary text-white text-base font-bold hover:bg-primaryDark transition-colors"
-                    target="_blank" rel="noopener">
-                    Contáctanos
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section class="py-16 md:py-24 bg-beige-light dark:bg-surface-dark/50">
-          <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-              <h2
-                class="text-3xl md:text-4xl font-bold text-text-light dark:text-text-dark"
-              >
-                Tu Socio en Cada Paso del Proceso
-              </h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div
-                class="flex flex-col items-center md:items-start text-center md:text-left gap-6"
-              >
-                <img
-                  class="rounded-lg shadow-lg object-cover w-full h-80"
-                  data-alt="Professional consultant in a meeting, discussing plans with a client."
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIZt_q7-vGFyUkWKTAKFtt-rXj_BSA87HbUiUQtjGoRo9oliC434_FJKS2edl0pzehVl5fwQuyx6t7V4CzFv9Fik_rDT66PlZM-ni8zSdIML-_m83yviC9grc7XVuIV2ld-sPPpNDTu7xDTWapgQdB1NH6Temgzh64A8aBmuvgc2lQARqr1h62yyMjs_4h7MOYk_qFTjZkXsLYsjQcIrOGrqdIXJMG7y4xCQi6k9TmVCVVUGPxAMbPkKLpUH5nqzejWLOEn3rVoA"
-                />
-                <div class="flex flex-col gap-2">
-                  <h3
-                    class="text-2xl font-bold text-text-light dark:text-text-dark"
-                  >
-                    Asesoramiento Personalizado
-                  </h3>
-                  <p
-                    class="text-text-light/80 dark:text-text-dark/80 leading-relaxed"
-                  >
-                    Contamos con personal altamente capacitado para resolver tus
-                    problemas de envase y embalaje. Te asesoramos desde el
-                    primer contacto hasta que tu producto esté perfectamente
-                    embalado.
-                  </p>
-                </div>
-              </div>
-              <div
-                class="flex flex-col items-center md:items-start text-center md:text-left gap-6"
-              >
-                <img
-                  class="rounded-lg shadow-lg object-cover w-full h-80"
-                  data-alt="Well-organized warehouse with stacks of ready-to-ship cardboard boxes."
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeqCRj272A-yIK_qblSaH60S0G8VYHUScMTgVUCKhTC_RPl3hKE4WqeYaGbngIDsy7y7Ol9-N19qWYI7dQsmOQn9t7JpgT8TpsyGq1yNS9-KeJdLhTzb4mWh8rWGXNXjsmdq2UQR6J1YSffV58w6rzjzEbb1s_JwubeAC7ULoiU7oDRcccjVce2FsRwmG1vs6v_TOLXpGAplpv-S65pmRrBABsJqyKaaqLoMDf_u52V9YiaqeCId843iFjjqy0YCCyfLQZC5hHVQ"
-                />
-                <div class="flex flex-col gap-2">
-                  <h3
-                    class="text-2xl font-bold text-text-light dark:text-text-dark"
-                  >
-                    Seguimiento Constante
-                  </h3>
-                  <p
-                    class="text-text-light/80 dark:text-text-dark/80 leading-relaxed"
-                  >
-                    Nuestro trabajo continúa incluso después de la entrega. Nos
-                    aseguramos de que tus cajas cumplan su objetivo y que tu
-                    stock sea repuesto constantemente, atendiendo tus nuevos
-                    requerimientos.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="text-center mt-4">
-            <a href="https://wa.me/51981380050?text=Hola,%20deseo%20una%20cotizaci%C3%B3n%20de%20cajas%20de%20cart%C3%B3n.%20Los%20contacto%20desde%20el%20sitio%20web.%20Gracias."
-                class="inline-flex items-center rounded-lg h-11 px-6 bg-primary text-white text-base font-bold hover:bg-primaryDark transition-colors"
-                target="_blank" rel="noopener">
-                Quiero asesoría
-            </a>
-          </div>
-        </section>
-        <section class="py-16 md:py-24" id="nosotros">
-          <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div>
-                <img
-                  class="rounded-lg shadow-lg object-cover w-full h-full"
-                  data-alt="Team members discussing plans over cardboard box samples in a modern office."
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoMyRlVQ4jJYji2JczYpRtRqffulBhrYbkYRGkbHGmZTXC56AxIG7NSDuJiV2rfuIQLHWqXx5G7MLhim853GWlYY3JXFXIgc_0hiBcTImy1ScWm35GcKjao7Wd7xILVXheamcG8B9586gBEULto0c0WkcCYhGOfv2wvtlmpkwgjyUND26klIZOUSPtGpPvDeLptRv2S_74HGRc7mCILzcgOOyjt3vjfha-WS8eDZ0ApIQP5bFBsYtF4ls0R5Pi78Q_Eh_4D5C0Uw"
-                />
-              </div>
-              <div class="flex flex-col gap-4">
-                <h2
-                  class="text-3xl md:text-4xl font-bold text-text-light dark:text-text-dark"
-                >
-                  Sobre Nosotros
-                </h2>
-                <p
-                  class="text-text-light/80 dark:text-text-dark/80 text-base font-normal leading-relaxed"
-                >
-                  En Cartoneria Angel Gabriel, somos más que fabricantes de
-                  cajas; somos socios estratégicos en la cadena de suministro de
-                  nuestros clientes. Con años de experiencia en la industria,
-                  nuestro equipo está dedicado a entender tus necesidades y
-                  ofrecerte soluciones de empaque personalizadas que protejan
-                  tus productos y optimicen tus costos. Nuestra misión es
-                  impulsar tu negocio con empaques confiables y de alta calidad.
-                </p>
-                <a href="https://wa.me/51981380050?text=Hola,%20deseo%20una%20cotizaci%C3%B3n%20de%20cajas%20de%20cart%C3%B3n.%20Los%20contacto%20desde%20el%20sitio%20web.%20Gracias."
-                    class="mt-2 inline-flex w-max items-center rounded-lg h-11 px-6 bg-primary text-white text-base font-bold hover:bg-primaryDark transition-colors"
-                    target="_blank" rel="noopener">
-                    Hablemos
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section
-          class="py-16 md:py-24 bg-surface-light dark:bg-surface-dark"
-          id="productos"
-        >
-          <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-              <h2
-                class="text-3xl md:text-4xl font-bold text-text-light dark:text-text-dark"
-              >
-                Nuestros Productos y Servicios
-              </h2>
-              <p
-                class="mt-4 max-w-2xl mx-auto text-text-light/80 dark:text-text-dark/80"
-              >
-                Ofrecemos una amplia gama de soluciones de empaque para
-                satisfacer las necesidades de diversas industrias.
-              </p>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div class="group relative overflow-hidden rounded-lg">
-                <img
-                  class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
-                  data-alt="Stacked e-commerce shipping boxes of various sizes."
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFQTjpn9ZHTfGj8PhDeC0abO-Eu4YMXzjgs6ZFuOnIXms4cA6ToNljFb_WnaF3IbBUHFUoCfghIFnLSK68f31IAD1AIOJ8Itcb88N98FyOXjFYp-m6EQm9xHk7MVD-F048uZJ0hHV0DWC6iMUA5krUylrQBMemqxeJeivIAIDn2nDimP-Uv7Hdj300PWPFIR1FpSH4h3f59vYoHQm6BTXAWJwfykaFxXr3g_ZlbYenyN-lXn3hHvZ_VUaOypAQbGxfQ_I94gGPEg"
-                />
-                <div class="absolute inset-0 bg-black/50 flex items-end p-4">
-                  <h3 class="text-white text-lg font-bold">
-                    Cajas para E-commerce
-                  </h3>
-                </div>
-              </div>
-              <div class="group relative overflow-hidden rounded-lg">
-                <img
-                  class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
-                  data-alt="A plain pizza box on a wooden table."
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAW3SOGnKGPbD5J0gjOeq_isJ8fTNYRPM54t5-VYX8QCEePkARZUwBgOgsd5Lwhp9DyT-A_9izo3LNGYASVAqEmAC7U2wnoJnM9DH3cowRyqm_UyjYURPaPM0gFh60EDK-haGrVbFzkkXA_6GET5M3Lu51WsUZhL43NfotOW4ewni-BWVcyYncLPxo_cFsuJHhgpJMTCFEULJFK7AlHLfJuqAq-WkGxfSTKYG531-vZy-DCLk8RO0enyj5fxvE5_yej4XyLvaCV5A"
-                />
-                <div class="absolute inset-0 bg-black/50 flex items-end p-4">
-                  <h3 class="text-white text-lg font-bold">
-                    Cajas para Alimentos
-                  </h3>
-                </div>
-              </div>
-              <div class="group relative overflow-hidden rounded-lg">
-                <img
-                  class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
-                  data-alt="Large industrial cardboard boxes on a pallet."
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBF23Y8cAfgCv-fnD_RRFZreevIG38JbomCvlqWFKaNRbXzedQ7F0nbVKw__K_Fv3JRV9B9ULgFJ-OSMAgQ42aZiwGJ0X9_AYMGbalnRUdxGhlGSC1eGIjyDqzCTZg8orNla-frL90BAF3x42Iif2KKy_TFWXLbRsKpwfuSL4XFB7Ge8ugTa6twrFSAicUNz9CTk2CyARlYxpyCoTAK94IDKZ-UmuvxnTvTXsUW6WU8zJlXCei6GRQrOGdke9dZYSSXJDJ0St8dQg"
-                />
-                <div class="absolute inset-0 bg-black/50 flex items-end p-4">
-                  <h3 class="text-white text-lg font-bold">
-                    Empaques Industriales
-                  </h3>
-                </div>
-              </div>
-              <div class="group relative overflow-hidden rounded-lg">
-                <img
-                  class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
-                  data-alt="A custom printed cardboard box with a logo."
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZUECyF4bW5Dz0-GcG4kOa0NFOmIt5QGXUhido0alOGrICkthHWh92zD2n5VxUDJQVm77Nr2iQX5mvDfTKqcEdv2j4hs8upVOSn7qp7ag6nq6BDGNQUI6HSzmoPoUjJhpwfsjKhs69pnQrSGTYhYORgdIGtTiNhOsFwr0K-Gi_qRZQh0ujQGgzVqpjoAjjkVT_LZuRsybvR6yh9vHaA1y6XrJ9Jg0FwGuNibfvzyoWZKv0ENvPDusCCbUzwOGVuv02EXLHOydh6Q"
-                />
-                <div class="absolute inset-0 bg-black/50 flex items-end p-4">
-                  <h3 class="text-white text-lg font-bold">
-                    Cajas Personalizadas
-                  </h3>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="text-center pt-8 md:pt-10">
-            <a href="https://wa.me/51981380050?text=Hola,%20deseo%20una%20cotizaci%C3%B3n%20de%20cajas%20de%20cart%C3%B3n.%20Los%20contacto%20desde%20el%20sitio%20web.%20Gracias."
-                class="inline-flex items-center rounded-lg h-11 px-6 bg-primary text-white text-base font-bold hover:bg-primaryDark transition-colors"
-                target="_blank" rel="noopener">
-                Solicitar cotización
-            </a>
-          </div>
-        </section>
-        <section class="py-16 md:py-24" id="galeria">
-          <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-              <h2
-                class="text-3xl md:text-4xl font-bold text-text-light dark:text-text-dark"
-              >
-                Galería de Productos
-              </h2>
-              <p
-                class="mt-4 max-w-2xl mx-auto text-text-light/80 dark:text-text-dark/80"
-              >
-                Un vistazo a la calidad y versatilidad de nuestros empaques.
-              </p>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div class="grid gap-4">
-                <div>
-                  <img
-                    class="h-auto max-w-full rounded-lg"
-                    data-alt="A simple cardboard box."
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPd20SDU6NxP4OP9Q8tu8vJne8yLTJNx1VfmEeVPmwRoujnfi_ICl49ICJFz3NvrpA0-6YUWVBrkDxTuqVIJOK70RTS4gag6zZd4sMVAS9qS0acZvCC3OoRo83qiEhxlDKJSo0A8BhkzqdpXsrPNEKmNbroty7YCb3UgfDxTKKVPfC-UG91nVHFj8u6QLl6VqIYrLxziRMXberZR4GyPT90nQOZF6ZbpZ7NO-q53Z-YX2mwUIefnt6YfI9cqDxSLLtZWMZAiDO6Q"
-                  />
-                </div>
-                <div>
-                  <img
-                    class="h-auto max-w-full rounded-lg"
-                    data-alt="Shipping boxes for e-commerce."
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtuLHwg73fQQorMe_nzlW98nO5MbQCDQWHBd9-_gG9jiFWlnyIlWlqLtpoBKRuC0K_dLx4waiVWwB-_bGLetCQjBv9jcBIM5JIDNiBGBlvZz8iDCzZSdbIm0nQ-u6BfdOPvzzONwrsmCOZ_RTRgSeaBZTClT6a3VmmHKidMKrO21iAIfPY-35TEEAybGtRTEWWt2g6ZxwH2pMY60Bx9Zhm_ZG0J0hhvRSCFjAamloWZK0RxIz8I63E4SJ58Wu0hGXoPWiHA5FiqA"
-                  />
-                </div>
-                <div>
-                  <img
-                    class="h-auto max-w-full rounded-lg"
-                    data-alt="Cardboard box with fragile tape."
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDG7Lfin92ThVonTbfw447oiB_a1vrObxIfHW3BZ_eF1qjc88hQz-ta4aQnFMS6EPeoPABs9GOD5zh-WSIIC5RCB9VedWwUnVGXb5zFw_tg56EixdDwEyzjua_08vBTl1jvC1tz8i1UkGqmt-S2NqDVvhOzIKkTFydsIz0vbjlOmwclKgUQHl_ln3cW7iSdm_zyVGSyxSdd-t2vqw9iOZzp0c1L2ur4lEj3HbYoK3Qq9EmY-C0SO_qtLu1dgwatrsDezrmctL-wsw"
-                  />
-                </div>
-              </div>
-              <div class="grid gap-4">
-                <div>
-                  <img
-                    class="h-auto max-w-full rounded-lg"
-                    data-alt="Woman holding a cardboard box."
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDA3XmwagAeJS-8fMESE-aoswjfYn6eFJhAG1qbio-qBaa4ao2-8zy085V3suZD2bO2gyzIW73Zuprm4LmTGRAEDXF0AUK0x3s8K3g7pAEpYthYUnkMeaCSW2LA5ox_NHg6z2btPAmaCVpp8xV89y-ycOdHVOLCys_l8uEVnwApu4idPe1TKtzEkZB9-9qZ0CvAEQ6VkfLY3U2QczSDiOW4CksO9tE6w2Q3Dh3_x2YkTCjbekDFSvjejzGUOONOKNiKG9OLfw9XcA"
-                  />
-                </div>
-                <div>
-                  <img
-                    class="h-auto max-w-full rounded-lg"
-                    data-alt="A stack of flat, unassembled boxes."
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKNk6GgoDQrRmJx_QvvWP8u3vL9tiaqB5zbNvP7Ie3SPtWEPDIOe9JBvi1s05aBUuhS4BjY3zhUrZIwjBWDpSf8EE4kqPbz1nY5Cgj4iK8uv_had-I-wrCalPoIfUlRvx5Bz7YvyjzTtAFkVm-oCB1W8_cl0hXELCckTLE42JpvKdX1l6VivC4a2dfmOuvwgrpSyS4gAHIF2UCevNfsUcjcIF9rrhEpsWDFO5NHyPwqwis34S1KzSij_lL7ysOXhAwy4psYJT_3A"
-                  />
-                </div>
-                <div>
-                  <img
-                    class="h-auto max-w-full rounded-lg"
-                    data-alt="A blank pizza box."
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzAWtnYbvM5x2wRfV6dgXWnArzY6COB8uf2ZevALaU-XcagLeIL2m8ER9f3T4peKOIQ1UXZoxgHVfVANKmthK6r_Tr8D4o7egTi8fYJX6OxpgvKAZvKeQXyAutAeYJqfdHRcNxlXx5x2PmzANJwhHjaGyLjslaxeigz7uqmSDEFh83is2glepc3C_aoO5LcwcpTTIhS66gGSiOBtuO_yuCwln9ow6xoqfqswSy79LPCAmYW8xVbLrYD3cRjHnKI4xAwLXNUi-QHA"
-                  />
-                </div>
-              </div>
-              <div class="grid gap-4">
-                <div>
-                  <img
-                    class="h-auto max-w-full rounded-lg"
-                    data-alt="Boxes on a conveyor belt in a factory."
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHsj5wDiqkGNjyCUt3pA0MPYg4tHPHXlTfaP3OZbWBlHaDUjkxWQB3hsdmVTJAjxTgaIfD-z8Rum7VdSX5Fp2FX95waJ6gqssXh6hFnMqfa6HkkxyQL6CLcZjoRSDL2rbLtURufitovIeSmbNnwNY3qyy3vRLyF_WeQiXWTjejyqiA_0woKBkZsL_GNxfzuw_4w-JlKppHu3yksVxTiZRiCIciXkddFXiet3KsJ4FOO9OTD6cYZS7wY36rPt63PrP0r9RWSsb2ng"
-                  />
-                </div>
-                <div>
-                  <img
-                    class="h-auto max-w-full rounded-lg"
-                    data-alt="Large cardboard sheets ready for production."
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAr3UJRlNj298QlNXxYH8huTfg_fC205sCzIla-HNgX3edh9F9Rp-x9bjgh49-LpUHEHDxHSODJQMEp43MY4EZXOoEy4fXFnHpt41ut1EFtlQWkHmXjTsjZXxkaBwVsAmRBUyRwXh9cSd427ORu-HtdUPPqSK2HhStdMUsjlIQGF8VCHWBzE1cu0kveX1VxQjDR5BnPbJNXRxGqwuGVuUxVnn4g1TrQ3YX92tq15oRCLXdkR3LP9nIL6GdGjZvePK3mx-FmuUekUQ"
-                  />
-                </div>
-                <div>
-                  <img
-                    class="h-auto max-w-full rounded-lg"
-                    data-alt="A box with custom printing."
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmelV-YuaRpMJFxDm2ZBG1GSJESzG7dYn066NJWpqvdSYnGoIckfZ9LvJHkH5P92BWIQ8puFCQpR83vrftC1ywD5uTPKxHrD_834hvSqDj_i9pBzmd5Cfbzh0YGNx_M83TvDncMjIyvDP2ldsZ87Fux42ZLZ16L4KDPT7RVuMgfZYrQWPfyymhsqPhUVQxDTXauObx83uJBEgv3MOLNsQtZRQUuZBJzpVuilK6v2Bvuon9uPgYis3jBHnzWvLEwoCwxM5io6TIOw"
-                  />
-                </div>
-              </div>
-              <div class="grid gap-4">
-                <div>
-                  <img
-                    class="h-auto max-w-full rounded-lg"
-                    data-alt="Industrial-sized shipping boxes."
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHciIs6q_MQI5bp5aWWlBf5rDr62jFIGFroRYlztF4pcgrKVb0TdXFAjAXDILcg62NaPhaukVOQcCM9SyQz34APkePAPag5_Ud09NTdxWON92ChStpRliJ-hO-NlUgUhMXJ1Ma9-iX5sgYMGHEeLFnyBYAUXZ5r5Bb9qBhXPUrLqsSwpl96uC-8JhQmvCJ4TDhzSnPgjmKvopCXjmgznhhqLqjyOZ3TTUy8vTrpZAsT8048Gbi1KZbJHL7EkMA3x5gb0LsKvZQxw"
-                  />
-                </div>
-                <div>
-                  <img
-                    class="h-auto max-w-full rounded-lg"
-                    data-alt="A person packing items into a box."
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1FeR-ruv33ZYMrYn1xiMjjE23Bxc8bl_VzbbQ4ZF61vUzk8AijCTFyLN-LMqOj1__3unN0kUvKNcCZtIfdZr67iJl3mhkd0VDDM9GHVyM4NdmUO9gDw_xElJa3jtPQqf_WlTKDGAJjKdpbVs3A_oK2vrb03W3lp2FelioIZ_SR-xHNAkybBCtgPjFOLps2twg6Q_W3YQaKgYMvyC3lR0YMwNHzAl1JSauVIuaM0yM-A1eP2L0TOfdp-w5BjDwvUwxCulaej74Lg"
-                  />
-                </div>
-                <div>
-                  <img
-                    class="h-auto max-w-full rounded-lg"
-                    data-alt="Moving boxes stacked in a room."
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM1967lLfvEc1In37uWD1wjQfTX6OZTmxLjOP-8JNP-8XUYRkvA06fjfXerxsjsTE_3YKSxd-BFKUU1fxGt5PrwhNoD7n5yOsFYxzjxSMtn7MAoge5qmKFHhelUBCUbRTgEWeh-d5ASAKVJDFS2sH_wLQmKrF8rZAqAe3Fce2NoDx3L5pEsejxtmxkKq5dbPD5oAMWtSFR4jNOfz0CiGPSVh8QEOeoNJ8WJ00mBpP6FysVr338j2hWLe9VOZGKFzX6A-9769aORg"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="text-center mt-10">
-            <a href="https://wa.me/51981380050?text=Hola,%20deseo%20una%20cotizaci%C3%B3n%20de%20cajas%20de%20cart%C3%B3n.%20Los%20contacto%20desde%20el%20sitio%20web.%20Gracias."
-            class="inline-flex items-center rounded-lg h-11 px-6 bg-primary text-white text-base font-bold hover:bg-primaryDark transition-colors"
-            target="_blank" rel="noopener">
-                Quiero este tipo de caja
-            </a>
-          </div>
-        </section>
-        <section
-          class="py-16 md:py-24 bg-surface-light dark:bg-surface-dark"
-          id="contacto"
-        >
-          <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-              <!-- Columna izquierda: título + texto + datos -->
-              <div class="flex flex-col gap-8">
-                <div class="space-y-3">
-                  <h2
-                    class="text-3xl md:text-4xl font-bold text-text-light dark:text-text-dark"
-                  >
-                    Contáctanos
-                  </h2>
-                  <p class="text-text-light/80 dark:text-text-dark/80 max-w-xl">
-                    ¿Listo para empezar? Llámanos, escríbenos o visítanos.
-                    Estamos aquí para ayudarte.
-                  </p>
-                </div>
 
-                <div class="space-y-5">
-                  <div class="flex items-start gap-4">
-                    <span
-                      class="material-symbols-outlined text-primary text-2xl mt-1"
-                      >location_on</span
-                    >
-                    <div>
-                      <h3
-                        class="font-bold text-lg text-text-light dark:text-text-dark"
-                      >
-                        Dirección
-                      </h3>
-                      <p class="text-text-light/80 dark:text-text-dark/80">
-                        Luis Espejo Tamayo 208, Cercado de Lima 15083
-                      </p>
+                    <div class="flex items-center gap-6">
+                        <a class="text-sm hover:text-white transition-colors" href="#nosotros">Nosotros</a>
+                        <a class="text-sm hover:text-white transition-colors" href="#productos">Productos</a>
+                        <a class="text-sm hover:text-white transition-colors" href="#contacto">Contacto</a>
                     </div>
-                  </div>
-
-                  <div class="flex items-start gap-4">
-                    <span
-                      class="material-symbols-outlined text-primary text-2xl mt-1"
-                      >call</span
-                    >
-                    <div>
-                      <h3
-                        class="font-bold text-lg text-text-light dark:text-text-dark"
-                      >
-                        Teléfono
-                      </h3>
-                      <p class="text-text-light/80 dark:text-text-dark/80">
-                        +51 963 004 006
-                      </p>
-                    </div>
-                  </div>
-
-                  <div class="flex items-start gap-4">
-                    <span
-                      class="material-symbols-outlined text-primary text-2xl mt-1"
-                      >mail</span
-                    >
-                    <div>
-                      <h3
-                        class="font-bold text-lg text-text-light dark:text-text-dark"
-                      >
-                        Email
-                      </h3>
-                      <p class="text-text-light/80 dark:text-text-dark/80">
-                        gabrielorellana923@hotmail.com
-                      </p>
-                    </div>
-                  </div>
-
-                  <div class="flex items-start gap-4">
-                    <span
-                      class="material-symbols-outlined text-primary text-2xl mt-1"
-                      >schedule</span
-                    >
-                    <div>
-                      <h3
-                        class="font-bold text-lg text-text-light dark:text-text-dark"
-                      >
-                        Horario
-                      </h3>
-                      <p class="text-text-light/80 dark:text-text-dark/80">
-                        Lunes–Viernes: 8:00 am – 6:00 pm
-                      </p>
-                      <p class="text-text-light/80 dark:text-text-dark/80">
-                        Sábados: 8:00 am – 1:00 pm
-                      </p>
-                    </div>
-                  </div>
                 </div>
-
-                <div class="pt-2">
-                  <a
-                    href="https://wa.me/51981380050?text=Hola%20Cartoner%C3%ADa%20Angel%20Gabriel,%20quisiera%20una%20cotizaci%C3%B3n."
-                    target="_blank"
-                    rel="noopener"
-                    class="inline-flex items-center rounded-lg h-12 px-7 bg-primary text-white text-base md:text-lg font-bold hover:bg-primaryDark transition-colors"
-                  >
-                    Escríbenos por WhatsApp
-                  </a>
-                </div>
-              </div>
-
-              <!-- Columna derecha: mapa con altura controlada -->
-              <!-- Derecha: mapa embebido -->
-              <div class="rounded-lg overflow-hidden shadow-lg">
-                <iframe
-                    class="w-full h-[320px] sm:h-[380px] lg:h-[460px] border-0"
-                    src="https://www.google.com/maps?q=Luis+Espejo+Tamayo+208,+Cercado+de+Lima+15083,+Per%C3%BA&z=17&hl=es&output=embed"
-                    allowfullscreen
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"
-                    aria-label="Mapa de ubicación: Luis Espejo Tamayo 208, Cercado de Lima 15083"
-                ></iframe>
-                <div class="p-2 text-center">
-                    <a
-                    href="https://www.google.com/maps/place/Luis+Espejo+Tamayo+208,+Cercado+de+Lima+15083,+Per%C3%BA"
-                    target="_blank" rel="noopener"
-                    class="text-primary font-semibold hover:underline"
-                    >Ver en Google Maps</a>
-                </div>
-              </div>
             </div>
-          </div>
-        </section>
-      </main>
-      <footer class="bg-surface-dark text-gray-300">
-        <div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
-          <div
-            class="flex flex-col md:flex-row justify-between items-center text-center md:text-left space-y-4 md:space-y-0"
-          >
-            <p class="text-sm">
-              Diseñado por
-              <a
-                href="https://pixsellway.com"
-                class="underline hover:no-underline"
-                target="_blank"
-                rel="noopener"
-                >PixSellWay</a
-              >. Todos los derechos reservados.
-            </p>
-
-            <div class="flex items-center gap-6">
-              <a
-                class="text-sm hover:text-white transition-colors"
-                href="#nosotros"
-                >Nosotros</a
-              >
-              <a
-                class="text-sm hover:text-white transition-colors"
-                href="#productos"
-                >Productos</a
-              >
-              <a
-                class="text-sm hover:text-white transition-colors"
-                href="#contacto"
-                >Contacto</a
-              >
-            </div>
-          </div>
-        </div>
-      </footer>
+        </footer>
     </div>
 
     <!-- WhatsApp flotante -->
-    <a href="https://wa.me/51981380050?text=Hola,%20deseo%20una%20cotizaci%C3%B3n%20de%20cajas%20de%20cart%C3%B3n.%20Los%20contacto%20desde%20el%20sitio%20web.%20Gracias."
-        target="_blank" rel="noopener" aria-label="WhatsApp"
-        class="fixed bottom-5 right-5 z-[60] h-14 w-14 rounded-full shadow-xl flex items-center justify-center hover:scale-105 transition transform"
-        style="background:#25D366;">
-        <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true" focusable="false" fill="#fff">
-            <path d="M19.11 17.6c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.6.14-.18.27-.69.88-.85 1.06-.16.18-.31.2-.58.07-.27-.14-1.12-.41-2.13-1.31-.79-.7-1.32-1.57-1.48-1.84-.16-.27-.02-.42.12-.56.12-.12.27-.31.41-.47.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.47-.07-.14-.6-1.45-.82-1.98-.22-.53-.44-.46-.6-.47l-.51-.01c-.18 0-.47.07-.72.34s-.95.93-.95 2.27 1 2.63 1.14 2.81c.14.18 1.97 3.01 4.76 4.22.67.29 1.2.47 1.61.6.67.21 1.28.18 1.76.11.54-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"/>
-            <path d="M26.77 5.24C24.19 2.66 20.76 1.25 17.13 1.25 9.77 1.25 3.79 7.23 3.79 14.59c0 2.33.61 4.6 1.77 6.6L3.25 30.75l9.73-2.25c1.92 1.05 4.1 1.6 6.32 1.6 7.36 0 13.34-5.98 13.34-13.34 0-3.56-1.39-6.99-3.87-9.52zm-9.64 22.5c-2.02 0-4-.54-5.72-1.56l-.41-.24-5.78 1.34 1.23-5.63-.26-.43c-1.07-1.75-1.63-3.76-1.63-5.82 0-6.13 4.98-11.11 11.11-11.11 2.97 0 5.76 1.16 7.86 3.26 2.1 2.1 3.26 4.89 3.26 7.86 0 6.13-4.98 11.11-11.11 11.11z"/>
-        </svg>
-    </a>
-
+    <div class="wsp-fab" aria-hidden="false">
+        <a href="https://wa.me/51981380050?text=Hola%2C%20vengo%20desde%20la%20web.%20Quisiera%20una%20cotizaci%C3%B3n%20para%20%5Btipo%20de%20caja%5D."
+            target="_blank" rel="noopener" aria-label="Abrir chat por WhatsApp">
+            <img src="img/whatsapp-white.svg" alt="" width="40" height="40" loading="eager" decoding="async">
+        </a>
+        <div class="wsp-tooltip">¿Necesitas ayuda?</div>
+    </div>
 
     <script>
-      (function () {
-        const header = document.querySelector("header");
-        const burger = document.getElementById("burger");
-        const panel = document.getElementById("mobileMenu");
+        (function () {
+            const header = document.querySelector("header");
+            const burger = document.getElementById("burger");
+            const panel = document.getElementById("mobileMenu");
 
-        // Sombra del header al hacer scroll
-        const onScrollHeader = () => {
-          if (!header) return;
-          const sc = window.scrollY || document.documentElement.scrollTop;
-          header.classList.toggle("is-scrolled", sc > 8);
-        };
-        onScrollHeader();
-        window.addEventListener("scroll", onScrollHeader, { passive: true });
+            // Sombra del header al hacer scroll
+            const onScrollHeader = () => {
+                if (!header) return;
+                const sc = window.scrollY || document.documentElement.scrollTop;
+                header.classList.toggle("is-scrolled", sc > 8);
+            };
+            onScrollHeader();
+            window.addEventListener("scroll", onScrollHeader, { passive: true });
 
-        // Toggle menú móvil
-        function toggleMenu(force) {
-          const open =
-            typeof force === "boolean"
-              ? force
-              : !(burger.getAttribute("aria-expanded") === "true");
-          burger.setAttribute("aria-expanded", String(open));
-          panel.classList.toggle("open", open);
-          document.body.classList.toggle("menu-open", open);
-          // Cambia el ícono
-          const icon = burger.querySelector(".material-symbols-outlined");
-          if (icon) icon.textContent = open ? "close" : "menu";
-        }
-        burger?.addEventListener("click", () => toggleMenu());
+            // Toggle menú móvil
+            function toggleMenu(force) {
+                const open =
+                    typeof force === "boolean"
+                        ? force
+                        : !(burger.getAttribute("aria-expanded") === "true");
+                burger.setAttribute("aria-expanded", String(open));
+                panel.classList.toggle("open", open);
+                document.body.classList.toggle("menu-open", open);
+                // Cambia el ícono
+                const icon = burger.querySelector(".material-symbols-outlined");
+                if (icon) icon.textContent = open ? "close" : "menu";
+            }
+            burger?.addEventListener("click", () => toggleMenu());
 
-        // Cerrar al redimensionar a desktop
-        window.addEventListener("resize", () => {
-          if (window.innerWidth >= 768) toggleMenu(false);
-        });
-
-        // Scroll suave con offset del header y cierre de menú si estaba abierto
-        document.querySelectorAll('a[href^="#"]').forEach((a) => {
-          a.addEventListener("click", (e) => {
-            const hash = a.getAttribute("href");
-            if (hash === "#" || !hash) return;
-            const target = document.querySelector(hash);
-            if (!target) return;
-            e.preventDefault();
-            const headerH = header ? header.offsetHeight : 64;
-            const y =
-              target.getBoundingClientRect().top +
-              window.pageYOffset -
-              headerH +
-              4;
-            // si el panel está abierto, ciérralo antes de hacer scroll
-            if (panel.classList.contains("open")) toggleMenu(false);
-            window.scrollTo({ top: y, behavior: "smooth" });
-            history.pushState(null, "", hash);
-          });
-        });
-
-        // Aparición al hacer scroll
-        const addReveal = (nodes) =>
-          nodes.forEach((el, i) => {
-            el.classList.add("reveal-up");
-            el.style.transitionDelay = `${Math.min(i * 60, 420)}ms`;
-            observer.observe(el);
-          });
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("is-visible");
-                observer.unobserve(entry.target);
-              }
+            // Cerrar al redimensionar a desktop
+            window.addEventListener("resize", () => {
+                if (window.innerWidth >= 768) toggleMenu(false);
             });
-          },
-          { rootMargin: "0px 0px -10% 0px", threshold: 0.15 }
-        );
 
-        addReveal([
-          ...document.querySelectorAll("#inicio h1, #inicio h2, #inicio .mt-4"),
-        ]);
-        addReveal([...document.querySelectorAll("section h2")]);
-        addReveal([...document.querySelectorAll("#nosotros p, #nosotros img")]);
-        addReveal([...document.querySelectorAll("#productos .group")]);
-        addReveal([...document.querySelectorAll("#galeria img")]);
-        addReveal([
-          ...document.querySelectorAll(
-            "#contacto form, #contacto .space-y-4 > div, #contacto .w-full.h-64"
-          ),
-        ]);
+            // Scroll suave con offset del header y cierre de menú si estaba abierto
+            document.querySelectorAll('a[href^="#"]').forEach((a) => {
+                a.addEventListener("click", (e) => {
+                    const hash = a.getAttribute("href");
+                    if (hash === "#" || !hash) return;
+                    const target = document.querySelector(hash);
+                    if (!target) return;
+                    e.preventDefault();
+                    const headerH = header ? header.offsetHeight : 64;
+                    const y =
+                        target.getBoundingClientRect().top +
+                        window.pageYOffset -
+                        headerH +
+                        4;
+                    // si el panel está abierto, ciérralo antes de hacer scroll
+                    if (panel.classList.contains("open")) toggleMenu(false);
+                    window.scrollTo({ top: y, behavior: "smooth" });
+                    history.pushState(null, "", hash);
+                });
+            });
 
-        // Hover lift a tarjetas y botones
-        document
-          .querySelectorAll(
-            'section:nth-of-type(2) [class*="rounded-lg"].border'
-          )
-          .forEach((el) => el.classList.add("hover-lift"));
-        document
-          .querySelectorAll("button")
-          .forEach((btn) => btn.classList.add("pressable"));
+            // Aparición al hacer scroll
+            const addReveal = (nodes) =>
+                nodes.forEach((el, i) => {
+                    el.classList.add("reveal-up");
+                    el.style.transitionDelay = `${Math.min(i * 60, 420)}ms`;
+                    observer.observe(el);
+                });
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("is-visible");
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                },
+                { rootMargin: "0px 0px -10% 0px", threshold: 0.15 }
+            );
 
-        // Parallax hero
-        const hero = document.querySelector("#inicio > div");
-        const reduce = window.matchMedia(
-          "(prefers-reduced-motion: reduce)"
-        ).matches;
-        if (hero && !reduce) {
-          const onScrollParallax = () => {
-            const y = (window.scrollY || 0) * 0.15;
-            hero.style.backgroundPosition = `center ${-y}px`;
-          };
-          onScrollParallax();
-          window.addEventListener("scroll", onScrollParallax, {
-            passive: true,
-          });
-        }
+            addReveal([
+                ...document.querySelectorAll("#inicio h1, #inicio h2, #inicio .mt-4"),
+            ]);
+            addReveal([...document.querySelectorAll("section h2")]);
+            addReveal([...document.querySelectorAll("#nosotros p, #nosotros img")]);
+            addReveal([...document.querySelectorAll("#productos .group")]);
+            addReveal([...document.querySelectorAll("#galeria img")]);
+            addReveal([
+                ...document.querySelectorAll(
+                    "#contacto form, #contacto .space-y-4 > div, #contacto .w-full.h-64"
+                ),
+            ]);
 
-        // Lazy images
-        document.querySelectorAll("img").forEach((img) => {
-          if (!img.loading) img.loading = "lazy";
-        });
-      })();
+            // Hover lift a tarjetas y botones
+            document
+                .querySelectorAll(
+                    'section:nth-of-type(2) [class*="rounded-lg"].border'
+                )
+                .forEach((el) => el.classList.add("hover-lift"));
+            document
+                .querySelectorAll("button")
+                .forEach((btn) => btn.classList.add("pressable"));
+
+            // Parallax hero
+            const hero = document.querySelector("#inicio > div");
+            const reduce = window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            ).matches;
+            if (hero && !reduce) {
+                const onScrollParallax = () => {
+                    const y = (window.scrollY || 0) * 0.15;
+                    hero.style.backgroundPosition = `center ${-y}px`;
+                };
+                onScrollParallax();
+                window.addEventListener("scroll", onScrollParallax, {
+                    passive: true,
+                });
+            }
+
+            // Lazy images
+            document.querySelectorAll("img").forEach((img) => {
+                if (!img.loading) img.loading = "lazy";
+            });
+        })();
     </script>
 
     <script>
-      (function () {
-        const header = document.querySelector("header");
+        (function () {
+            const header = document.querySelector("header");
 
-        // Calcula la altura real del header y ajusta el body
-        function setHeaderPadding() {
-          if (!header) return;
-          const h = header.offsetHeight;
-          document.documentElement.style.setProperty("--header-h", h + "px");
-          document.body.classList.add("has-fixed-header");
-        }
-        setHeaderPadding();
-        window.addEventListener("resize", setHeaderPadding);
+            // Calcula la altura real del header y ajusta el body
+            function setHeaderPadding() {
+                if (!header) return;
+                const h = header.offsetHeight;
+                document.documentElement.style.setProperty("--header-h", h + "px");
+                document.body.classList.add("has-fixed-header");
+            }
+            setHeaderPadding();
+            window.addEventListener("resize", setHeaderPadding);
 
-        // Sombra cuando hay desplazamiento
-        function onScrollHeader() {
-          const sc = window.scrollY || document.documentElement.scrollTop;
-          header?.classList.toggle("is-scrolled", sc > 8);
-        }
-        onScrollHeader();
-        window.addEventListener("scroll", onScrollHeader, { passive: true });
-      })();
+            // Sombra cuando hay desplazamiento
+            function onScrollHeader() {
+                const sc = window.scrollY || document.documentElement.scrollTop;
+                header?.classList.toggle("is-scrolled", sc > 8);
+            }
+            onScrollHeader();
+            window.addEventListener("scroll", onScrollHeader, { passive: true });
+        })();
     </script>
-  </body>
+</body>
+
 </html>
